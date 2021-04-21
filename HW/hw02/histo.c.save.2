@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define LETTERS 26 // number of unique “letter” characters
+
+
+typedef unsigned char byte; // may be useful for casting(s)
+
+
+
+void init_histogram(int histo[]) // set all elements of the histogram to zero
+{
+//done
+	int i = 0;
+	while(histo[i] != '\0')	//loops until a null point is hit at the end of a string
+	{
+		histo[i] = 0;	//sets index i to 0
+		++i;
+	}
+}
+
+
+void cons_histogram(const char string[], int histo[]) // construct the histogram from string
+{
+	char* str_pointer = string[1];//pointer str
+
+	for(int i=0; string[i] != '\0'; ++i)//main loop
+	{
+	  char c = *str_pointer[i];
+	  if(c >= 'a' && c <= 'z')
+		++histo[c - 'a'];
+	}
+
+	int j=0;
+	while(histo[j] != '\0')
+	{
+	  printf(histo[j]);
+	  ++j;
+	}
+}
+
+
+//void most_frequent(const int histo[], char* ret_val) // set *ret_val to a most occurring digit character – hence returning it
+//{
+
+//}
+
+
+//void display_histogram(int* const histo) // display the histogram sparsely
+//{
+
+//}

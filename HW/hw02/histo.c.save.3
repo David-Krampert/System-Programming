@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+#define LETTERS 26 // number of unique “letter” characters
+
+typedef unsigned char byte; // may be useful for casting(s)
+
+
+
+void init_histogram(int histo[]) // set all elements of the histogram to zero
+{
+//done
+	int i = 0;
+	while(histo[i] != '\0')	//loops until a null point is hit at the end of a string
+	{
+		histo[i] = 0;	//sets index i to 0
+		++i;
+	}
+}
+
+
+void cons_histogram(const char string[], int histo[]) // construct the histogram from string
+{
+	//char* str_pointer = string[1];//pointer str
+	int i;
+	for(i=0; string[i] != '\0'; ++i)//main loop
+	{
+	  int char_letter = (int)string[i];
+	  if(char_letter >= 'a' && char_letter <= 'z')
+		++histo[char_letter - 'a'];
+	}
+
+	//int j=0;
+	//while(histo[j] != '\0')
+	//{
+	 // printf(histo[j]);
+	 // ++j;
+	//}
+}
+
+
+void most_frequent(const int histo[], char* ret_val) // set *ret_val to a most occurring digit character – hence returning it
+{
+	int length = sizeof(histo);
+	int i;
+	for(i = 0; i < length; ++i)
+	{
+		if(histo[i] > *ret_val)
+			*ret_val = histo[i];
+	}
+}
+
+
+void display_histogram(int* const histo) // display the histogram sparsely
+{
+	for(int* ptr = histo; ptr < ptr + LETTERS * sizeof(int); ptr = sizeof(int)
+	{
+		int val = *ptr;//value in array at the index that ptr is pointing to
+		printf("The value is: %d", val);
+	}
+}
